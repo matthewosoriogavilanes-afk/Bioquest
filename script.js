@@ -153,17 +153,17 @@ const NATALIE = spr('director.png', 'Natalie, facility director');
 const PLAYER = spr('character-placeholder.svg', 'You');
 const MANAGER = spr('manager.png', 'Manager');
 const PHARMA = spr('pharmacist.png', 'Pharmacist');
-const DETECT = spr('detection.png', 'idk the name for this yet');
-const AGRI = spr('agriculture.png', 'idk name yet');
-//const MARINE = spr('marine.png', 'idk name yet2'); (yikes, i forgot to make this guy  T_T   imma add him in later)
+const DETECT = spr('detection.png', 'Scientist');
+const AGRI = spr('agriculture.png', 'Green House Manager');
+const MARINE = spr('marine.png', 'Marine Biologist');
 
 //overall variable for sprites that changes based on what sector is chosen
 const PERSON_SPRITE = [
   PHARMA,//PHARMA
   MANAGER,//AGRI
   DETECT,//REGULATORY
-  AGRI//DETECT
-  //,  MARINE//MARINE
+  AGRI//DETECT,
+  MARINE//MARINE
 ];
 
 const say = (sp, who, txt, extra = '') => `<div class="scene">${sp}<div class="bubble glass"><b>${who}</b><p>${txt}</p>${extra}</div></div>`;
