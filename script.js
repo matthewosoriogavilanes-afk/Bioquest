@@ -152,7 +152,7 @@ const spr = (src, l) => `<img class="spr sprite-placeholder" src="${src}" alt="$
 const NATALIE = spr('director.png', 'Natalie, facility director');
 const PLAYER = spr('character-placeholder.svg', 'You');
 const MANAGER = spr('manager.png', 'Manager');
-const PHARMA = spr('pharmacist.png', 'Pharmacist');
+const PHARMA = spr('pharma.png', 'Pharmacist');
 const DETECT = spr('detection.png', 'Scientist');
 const AGRI = spr('agriculture.png', 'Green House Manager');
 const MARINE = spr('marine.png', 'Marine Biologist');
