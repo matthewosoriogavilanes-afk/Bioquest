@@ -152,6 +152,19 @@ const spr = (src, l) => `<img class="spr sprite-placeholder" src="${src}" alt="$
 const NATALIE = spr('director.png', 'Natalie, facility director');
 const PLAYER = spr('character-placeholder.svg', 'You');
 const MANAGER = spr('manager.png', 'Manager');
+const PHARMA = spr('pharmacist.png', 'Pharmacist');
+const DETECT = spr('detection.png', 'idk the name for this yet');
+const AGRI = spr('agriculture.png', 'idk name yet');
+//const MARINE = spr('marine.png', 'idk name yet2'); (yikes, i forgot to make this guy  T_T   imma add him in later)
+
+//overall variable for sprites that changes based on what sector is chosen
+const PERSON_SPRITE = [
+  PHARMA,//PHARMA
+  MANAGER,//AGRI
+  DETECT,//REGULATORY
+  AGRI//DETECT
+  //,  MARINE//MARINE
+];
 
 const say = (sp, who, txt, extra = '') => `<div class="scene">${sp}<div class="bubble glass"><b>${who}</b><p>${txt}</p>${extra}</div></div>`;
 
@@ -213,28 +226,27 @@ const CP={x:50,y:72,speed:23};
 // Edit CAMPUS_MAIN_ROADS when changing the background; keep each corridor
 // connected at the wide junctions so the upper and lower campus remain reachable.
 const CAMPUS_LOCATIONS=[
-  {name:'Pharma / Healthcare',x:41,y:33,kind:'sector',sector:0,short:'Pharma Lab'},
-  {name:'Agricultural & Environmental',x:62,y:33,kind:'sector',sector:1,short:'Greenhouse'},
-  {name:'Regulatory Science',x:23,y:64.5,kind:'sector',sector:2,short:'Regulatory Lab'},
-  {name:'Detection',x:79,y:64.5,kind:'sector',sector:3,short:'Detection Lab'},
-  {name:'Marine',x:79,y:94,kind:'sector',sector:4,short:'Marine Lab'},
-  {name:'Team HQ',x:50,y:29,kind:'hq',short:'Team HQ'},
-  {name:'Main Research Center',x:23,y:94,kind:'research',short:'Research Center'}
+  {name:'Pharma / Healthcare',x:30,y:33,kind:'sector',sector:0,short:'Pharma Lab'},
+  {name:'Agricultural & Environmental',x:85,y:33,kind:'sector',sector:1,short:'Greenhouse'},
+  {name:'Regulatory Science',x:33,y:64.5,kind:'sector',sector:2,short:'Regulatory Lab'},
+  {name:'Detection',x:74,y:64.5,kind:'sector',sector:3,short:'Detection Lab'},
+  {name:'Marine',x:63,y:87,kind:'sector',sector:4,short:'Marine Lab'},
+  {name:'Team HQ',x:29,y:87,kind:'hq',short:'Team HQ'},
+  {name:'Main Research Center',x:55,y:29,kind:'research',short:'Research Center'}
 ];
 // Only the wide central north/south avenue and three wide east/west roads.
 // These are inclusive [left, top, right, bottom] percentage rectangles.
 // East/west branches begin AFTER the buildings, not in their roof footprints.
 // The upper crossroad is intentionally a little narrower near the outside labs.
 const CAMPUS_MAIN_ROADS=[
-  [37,27,66,97.8],     // the single WIDE central north/south avenue (both sides of fountain)
-  [8,37.5,93,41.8],   // upper wide east/west connector
-  [8,62.5,93,70],     // middle wide east/west connector
-  [8,92.5,92,97.8]    // southern wide east/west connector, before the waterline
+  [0,0,90,90]
 ];
 // Fountain is solid even where a nearby road meets its stone border.
+
 const CAMPUS_BLOCKED_AREAS=[
-  [[45.7,43],[48,41.6],[52,41.6],[54.4,43],[54.4,53.8],[52,55.2],[48,55.2],[45.7,53.8]]
+  [0,0]
 ];
+
 // A small foot radius keeps the sprite away from road edges, preventing water
 // traversal without creating invisible walls across the middle of the path.
 const CAMPUS_FOOT_RADIUS={x:0.65,y:0.65};
@@ -773,7 +785,7 @@ function quiz(){
   if (!q) { result(G.sec); return; }
   const answers = Array.isArray(q.answers) ? q.answers : [];
   draw(SECT[G.sec].th,`<div class="hud"><h3>${area.name}</h3><span class="count">Scenario ${G.q+1}/${area.scenarios.length}</span></div>
-  ${say(MANAGER,SECT[G.sec].m,q.title,`<p>${q.dialogue}</p><div class="ans">${answers.map((a,i)=>`<button data-ans="${i}">${String.fromCharCode(65+i)}. ${a[0]}</button>`).join('')}</div>`)}`,SECT[G.sec]);
+  ${say(PERSON_SPRITE[G.sec],SECT[G.sec].m,q.title,`<p>${q.dialogue}</p><div class="ans">${answers.map((a,i)=>`<button data-ans="${i}">${String.fromCharCode(65+i)}. ${a[0]}</button>`).join('')}</div>`)}`,SECT[G.sec]);
 }
 
 /* ---- 5. results ---- */
